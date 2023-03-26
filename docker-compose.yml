@@ -7,3 +7,27 @@ services:
     ports:
       - "8500:8500"
       - "8600:8600/udp"
+  wms-zookeeper:
+    image: zookeeper
+    container_name: wms-zookeeper
+    restart: unless-stopped
+    ports:
+      - 3011:2181
+
+  # Kafka instance
+  wms-kafka:
+    image: 'bitnami/kafka:latest'
+    container_name: wms-kafka
+    restart: unless-stopped
+    ports:
+      - 3012:9092
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=wms-zookeeper:2181
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
+      - KAFKA_LISTENERS=PLAINTEXT://wms-kafka:9092,INTERNAL://wms-kafka:29092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:3012,INTERNAL://wms-kafka:29092
+      - KAFKA_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - wms-zookeeper
