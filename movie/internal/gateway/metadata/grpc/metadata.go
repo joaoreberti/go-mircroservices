@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"context"
-	"google.golang.org/grpc"
+
 	"movieexample.com/gen"
 	"movieexample.com/internal/grpcutil"
 	"movieexample.com/metadata/pkg/model"
@@ -28,7 +28,7 @@ func (g *Gateway) Get(ctx context.Context, id string) (*model.Metadata, error) {
 	}
 	defer conn.Close()
 	client := gen.NewMetadataServiceClient(conn)
-	resp, err := client.GetMetadataByID(ctx, &gen.GetMetadataByIDRequest{MovieId: id})
+	resp, err := client.GetMetadata(ctx, &gen.GetMetadataRequest{MovieId: id})
 	if err != nil {
 		return nil, err
 	}

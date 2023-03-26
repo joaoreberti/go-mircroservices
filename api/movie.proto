@@ -9,7 +9,7 @@ message Metadata {
 }
  
 message MovieDetails {
-    float rating = 1;
+    double rating = 1;
     Metadata metadata = 2;
 }
 
@@ -52,7 +52,7 @@ message PutRatingRequest {
     string user_id = 1;
     string record_id = 2;
     string record_type = 3;
-    int32 rating_value = 4;
+    double rating_value = 4;
 }
  
 message PutRatingResponse {

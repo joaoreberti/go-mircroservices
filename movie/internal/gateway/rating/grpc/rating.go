@@ -2,12 +2,11 @@ package grpc
 
 import (
 	"context"
-	"pkg/discovery"
-	"rating/pkg/model"
 
-	"google.golang.org/grpc"
 	"movieexample.com/gen"
 	"movieexample.com/internal/grpcutil"
+	"movieexample.com/pkg/discovery"
+	"movieexample.com/rating/pkg/model"
 )
 
 // Gateway defines an gRPC gateway for a rating service.

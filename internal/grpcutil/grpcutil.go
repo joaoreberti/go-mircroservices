@@ -2,11 +2,11 @@ package grpcutil
 
 import (
 	"context"
+	"math/rand"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"math/rand"
 	"movieexample.com/pkg/discovery"
-	"pkg/discovery"
 )
 
 // ServiceConnection attempts to select a random service
