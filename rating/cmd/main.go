@@ -15,6 +15,7 @@ import (
 	"movieexample.com/pkg/discovery/consul"
 	"movieexample.com/rating/internal/controller/rating"
 	grpchandler "movieexample.com/rating/internal/handler/grpc"
+	"movieexample.com/rating/internal/ingester"
 	"movieexample.com/rating/internal/repository/memory"
 )
 
@@ -44,7 +45,11 @@ func main() {
 	}()
 	defer registry.Deregister(ctx, instanceID, serviceName)
 	repo := memory.New()
-	ctrl := rating.New(repo)
+	ingester, err := ingester.NewIngester("localhost:3012", "test-group", "ratings")
+	if err != nil {
+		log.Fatalf("failed to create ingester: %v", err)
+	}
+	ctrl := rating.New(repo, ingester)
 	h := grpchandler.New(ctrl)
 	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%v", port))
 	if err != nil {

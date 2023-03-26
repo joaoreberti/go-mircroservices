@@ -34,3 +34,18 @@ func (g *Gateway) GetAggregatedRating(ctx context.Context, recordID model.Record
 	}
 	return resp.RatingValue, nil
 }
+
+// start ingestion
+func (g *Gateway) StartIngestion(ctx context.Context) error {
+	conn, err := grpcutil.ServiceConnection(ctx, "rating", g.registry)
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+	client := gen.NewRatingServiceClient(conn)
+	_, err = client.StartIngestion(ctx, &gen.StartIngestionRequest{})
+	if err != nil {
+		return err
+	}
+	return nil
+}

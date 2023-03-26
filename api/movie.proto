@@ -37,8 +37,14 @@ message PutMetadataResponse {
 service RatingService {
     rpc GetAggregatedRating(GetAggregatedRatingRequest) returns (GetAggregatedRatingResponse);
     rpc PutRating(PutRatingRequest) returns (PutRatingResponse);
+    rpc StartIngestion(StartIngestionRequest) returns (StartIngestionResponse);
 }
- 
+
+message StartIngestionRequest {
+}
+message StartIngestionResponse {
+}
+
 message GetAggregatedRatingRequest {
     string record_id = 1;
     string record_type = 2;
