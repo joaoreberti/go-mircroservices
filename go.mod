@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/confluentinc/confluent-kafka-go v1.9.2
-	github.com/golang/protobuf v1.5.2
+	github.com/go-sql-driver/mysql v1.7.0
 	github.com/hashicorp/consul/api v1.20.0
 	google.golang.org/grpc v1.54.0
 	google.golang.org/protobuf v1.30.0
@@ -14,6 +14,7 @@ require (
 	github.com/armon/go-metrics v0.3.10 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fatih/color v1.13.0 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/btree v1.0.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect

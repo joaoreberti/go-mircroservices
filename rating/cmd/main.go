@@ -16,7 +16,7 @@ import (
 	"movieexample.com/rating/internal/controller/rating"
 	grpchandler "movieexample.com/rating/internal/handler/grpc"
 	"movieexample.com/rating/internal/ingester"
-	"movieexample.com/rating/internal/repository/memory"
+	"movieexample.com/rating/internal/repository/mysql"
 )
 
 const serviceName = "rating"
@@ -44,8 +44,11 @@ func main() {
 		}
 	}()
 	defer registry.Deregister(ctx, instanceID, serviceName)
-	repo := memory.New()
-	ingester, err := ingester.NewIngester("localhost:3012", "test-group", "ratings")
+	repo, nil := mysql.New()
+	if err != nil {
+		panic(err)
+	}
+	ingester, err := ingester.NewIngester("localhost:3014", "test-group", "ratings")
 	if err != nil {
 		log.Fatalf("failed to create ingester: %v", err)
 	}

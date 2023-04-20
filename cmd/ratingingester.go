@@ -14,7 +14,7 @@ import (
 func main() {
 	fmt.Println("Creating a Kafka producer")
 
-	producer, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost:3012"})
+	producer, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost:3014"})
 	if err != nil {
 		panic(err)
 	}
