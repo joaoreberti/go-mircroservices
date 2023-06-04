@@ -32,7 +32,7 @@ func NewRegistry(addr string) (*Registry, error) {
 func (r *Registry) Register(ctx context.Context, instanceID string, serviceName string, hostPort string) error {
 	parts := strings.Split(hostPort, ":")
 	if len(parts) != 2 {
-		return errors.New("hostPort must be in a form of <host>:<port>, example: localhost:8081")
+		return errors.New("hostPort must be in a form of <host>:<port>, example: localhost:8089")
 	}
 	port, err := strconv.Atoi(parts[1])
 	if err != nil {

@@ -5,19 +5,19 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/confluentinc/confluent-kafka-go/kafka"
+	banana "github.com/confluentinc/confluent-kafka-go/kafka"
 	"movieexample.com/rating/pkg/model"
 )
 
 // Ingester defines a Kafka ingester.
 type Ingester struct {
-	consumer *kafka.Consumer
+	consumer *banana.Consumer
 	topic    string
 }
 
 // NewIngester creates a new Kafka ingester.
 func NewIngester(addr string, groupID string, topic string) (*Ingester, error) {
-	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
+	consumer, err := banana.NewConsumer(&banana.ConfigMap{
 		"bootstrap.servers":     addr,
 		"group.id":              groupID,
 		"auto.offset.reset":     "earliest",

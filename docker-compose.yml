@@ -1,12 +1,22 @@
 version: '3'
 
 services:
+
   consul:
     image: consul
     command: "agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0"
     ports:
       - "8500:8500"
       - "8600:8600/udp"
+
+  rating:
+    image: rating
+    command: "/main"
+    ports:
+      - "8082:8082"
+    depends_on:
+      - consul
+
   go-zookeeper:
     image: zookeeper
     container_name: go-zookeeper
@@ -40,4 +50,3 @@ services:
     environment:
       - MYSQL_DATABASE=movieexample
       - MYSQL_ROOT_PASSWORD=password
-

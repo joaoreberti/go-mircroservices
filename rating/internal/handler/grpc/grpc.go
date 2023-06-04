@@ -3,7 +3,6 @@ package grpc
 import (
 	"context"
 	"errors"
-	"fmt"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -50,11 +49,11 @@ func (h *Handler) PutRating(ctx context.Context, req *gen.PutRatingRequest) (*ge
 }
 
 // Ingest rating data
-func (h *Handler) StartIngestion(ctx context.Context, req *gen.StartIngestionRequest) (*gen.StartIngestionResponse, error) {
-	err := h.ctrl.StartIngestion(ctx)
-	if err != nil {
-		fmt.Println("error starting ingestion", err)
-		return nil, err
-	}
-	return nil, nil
-}
+// func (h *Handler) StartIngestion(ctx context.Context, req *gen.StartIngestionRequest) (*gen.StartIngestionResponse, error) {
+// 	err := h.ctrl.StartIngestion(ctx)
+// 	if err != nil {
+// 		fmt.Println("error starting ingestion", err)
+// 		return nil, err
+// 	}
+// 	return nil, nil
+// }
